@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface dotExViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIButton *Login;
+@property (strong, nonatomic) IBOutlet UIButton *Sign_Up;
+@property (strong, nonatomic) IBOutlet UIButton *forgotPasswordButton;
+//blah
 
 @end

@@ -9,11 +9,11 @@
 #import "dotExViewController.h"
 
 @interface dotExViewController ()
-
 @end
 
 @implementation dotExViewController
-
+@synthesize Login = _Login;
+@synthesize Sign_Up = _Sign_Up;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -30,5 +30,19 @@
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
-
+-(IBAction)signUpPressed:(id)sender
+{
+    dotExViewController *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"signUp"];
+    [self.navigationController pushViewController:nextView animated:YES];
+}
+-(IBAction)forgotButtonPressed:(id)sender
+{
+    dotExViewController *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"forgotPassword"];
+    [self.navigationController pushViewController:nextView animated:YES];
+}
+-(IBAction)loginPressed:(id)sender
+{
+     dotExViewController *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"homeScreen"];
+     [self.navigationController pushViewController:nextView animated:YES];
+}
 @end
