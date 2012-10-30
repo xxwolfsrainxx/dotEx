@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		151D06C316405E810009982B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 151D06C216405E810009982B /* CFNetwork.framework */; };
+		151D06C616405E990009982B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 151D06C516405E990009982B /* SystemConfiguration.framework */; };
+		151D06C816405EA00009982B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 151D06C716405EA00009982B /* MobileCoreServices.framework */; };
+		151D06CA16405EB30009982B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 151D06C916405EB30009982B /* libz.dylib */; };
 		3B18FA67160BA2B0008B0A8A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B18FA66160BA2B0008B0A8A /* UIKit.framework */; };
 		3B18FA69160BA2B0008B0A8A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B18FA68160BA2B0008B0A8A /* Foundation.framework */; };
 		3B18FA6B160BA2B0008B0A8A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B18FA6A160BA2B0008B0A8A /* CoreGraphics.framework */; };
@@ -33,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		151D06C216405E810009982B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		151D06C516405E990009982B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		151D06C716405EA00009982B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		151D06C916405EB30009982B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3B18FA62160BA2B0008B0A8A /* dotEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dotEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B18FA66160BA2B0008B0A8A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3B18FA68160BA2B0008B0A8A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -59,9 +67,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				151D06C616405E990009982B /* SystemConfiguration.framework in Frameworks */,
+				151D06C316405E810009982B /* CFNetwork.framework in Frameworks */,
+				151D06C816405EA00009982B /* MobileCoreServices.framework in Frameworks */,
+				151D06CA16405EB30009982B /* libz.dylib in Frameworks */,
+				3B18FA6B160BA2B0008B0A8A /* CoreGraphics.framework in Frameworks */,
 				3B18FA67160BA2B0008B0A8A /* UIKit.framework in Frameworks */,
 				3B18FA69160BA2B0008B0A8A /* Foundation.framework in Frameworks */,
-				3B18FA6B160BA2B0008B0A8A /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +93,10 @@
 		3B18FA57160BA2B0008B0A8A = {
 			isa = PBXGroup;
 			children = (
+				151D06C916405EB30009982B /* libz.dylib */,
+				151D06C716405EA00009982B /* MobileCoreServices.framework */,
+				151D06C516405E990009982B /* SystemConfiguration.framework */,
+				151D06C216405E810009982B /* CFNetwork.framework */,
 				3B18FA6C160BA2B0008B0A8A /* dotEx */,
 				3B18FA8A160BA2B0008B0A8A /* dotExTests */,
 				3B18FA65160BA2B0008B0A8A /* Frameworks */,
@@ -435,6 +451,7 @@
 				3B18FA97160BA2B0008B0A8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B18FA98160BA2B0008B0A8A /* Build configuration list for PBXNativeTarget "dotExTests" */ = {
 			isa = XCConfigurationList;
@@ -443,6 +460,7 @@
 				3B18FA9A160BA2B0008B0A8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

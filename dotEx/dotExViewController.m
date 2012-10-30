@@ -14,9 +14,16 @@
 @implementation dotExViewController
 @synthesize Login = _Login;
 @synthesize Sign_Up = _Sign_Up;
+@synthesize firstName = _firstName;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //....
+    //....
+    //Setting the textField's properties
+    //....
+    //The next line is important!!
+    self.firstName.delegate = self; //self references the viewcontroller or view your textField is on
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -44,5 +51,14 @@
 {
      dotExViewController *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"homeScreen"];
      [self.navigationController pushViewController:nextView animated:YES];
+}
+-(IBAction)submitSignUpPressed:(id)sender
+{
+    NSLog(@"%@", self.firstName.text);
+    
+}
+- (IBAction)sendertextFieldShouldReturn:(id)textField
+{
+    [textField resignFirstResponder];
 }
 @end
