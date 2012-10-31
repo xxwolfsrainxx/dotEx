@@ -134,7 +134,6 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="sendertextFieldShouldReturn:" destination="Su1-x3-RzK" eventType="editingDidEndOnExit" id="KZl-rU-iUm"/>
-                                    <outlet property="delegate" destination="Su1-x3-RzK" id="fl6-XJ-W2I"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="N6u-pg-nwU" userLabel="forgotEmail">
@@ -281,9 +280,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="sendertextFieldShouldReturn:" destination="G2H-Aj-M04" eventType="editingDidEndOnExit" id="q5d-9E-3Or"/>
-                                    <action selector="submitSignUpPressed:" destination="G2H-Aj-M04" eventType="editingDidEnd" id="KZb-x3-dCb"/>
-                                    <outlet property="delegate" destination="G2H-Aj-M04" id="9dY-LF-1LM"/>
+                                    <action selector="sendertextFieldShouldReturn:" destination="G2H-Aj-M04" eventType="editingDidEndOnExit" id="bf5-nt-Odj"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="sbq-03-XBJ" userLabel="lastName">
@@ -477,6 +474,25 @@
             <point key="canvasLocation" x="132" y="182"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="dotExViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/dotExViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="forgotButtonPressed:"/>
+                <relationship kind="action" name="loginPressed:"/>
+                <relationship kind="action" name="sendertextFieldShouldReturn:"/>
+                <relationship kind="action" name="signUpPressed:"/>
+                <relationship kind="action" name="submitSignUpPressed:"/>
+                <relationship kind="outlet" name="accountName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="reEnteredPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secretAnswer" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

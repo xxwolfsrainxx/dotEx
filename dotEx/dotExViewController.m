@@ -65,10 +65,23 @@
 }
 -(IBAction)submitSignUpPressed:(id)sender
 {
+    NSNumber *secretQuestion = [NSNumber numberWithInt:(1)];
     NSString *myphp = @"http://yus.dyndns-server.com/insertScript.php";
     NSURL *url = [NSURL URLWithString:myphp];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:_firstName.text forKey:@"firstName"];
+    [request setPostValue:secretQuestion forKey:@"secretQuestion"];
+    [request setPostValue:_lastName.text forKey:@"lastName"];
+    [request setPostValue:_password.text forKey:@"userPassword"];
+    [request setPostValue:_accountName.text forKey:@"userName"];
+    [request setPostValue:_email.text forKey:@"email"];
+    [request setPostValue:_secretAnswer.text forKey:@"secretAnswer"];
+    [request startAsynchronous];
+    NSString *response = [request responseString];
+    if([response isEqualToString:@"User Created"])
+    {
+        NSLog(@"User Created");
+    }
     
 }
 - (IBAction)sendertextFieldShouldReturn:(id)textField
