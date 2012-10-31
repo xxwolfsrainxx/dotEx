@@ -349,7 +349,13 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="accountName" destination="Z1b-7g-hbE" id="gS6-mz-stX"/>
+                        <outlet property="email" destination="fhD-7G-BFg" id="2TE-3x-AmF"/>
                         <outlet property="firstName" destination="OzI-ef-lXR" id="Uqv-Du-cqm"/>
+                        <outlet property="lastName" destination="sbq-03-XBJ" id="0yX-Jp-Kcl"/>
+                        <outlet property="password" destination="c5x-ow-Vvt" id="Hix-c0-kSX"/>
+                        <outlet property="reEnteredPassword" destination="O0j-7F-won" id="86g-rE-AfE"/>
+                        <outlet property="secretAnswer" destination="hDW-hY-mFk" id="Ms9-4w-bMj"/>
                     </connections>
                 </viewController>
             </objects>

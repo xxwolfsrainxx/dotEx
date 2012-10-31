@@ -7,12 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ASIFormDataRequest.h"
 @interface dotExViewController : UIViewController <UITextFieldDelegate>
-@property (strong, nonatomic) IBOutlet UIButton *Login;
-@property (strong, nonatomic) IBOutlet UIButton *Sign_Up;
-@property (strong, nonatomic) IBOutlet UIButton *forgotPasswordButton;
-@property (strong, nonatomic) IBOutlet UIButton *submitButton;
 @property (strong, nonatomic) IBOutlet UITextField *firstName;
 @property (strong, nonatomic) IBOutlet UITextField *lastName;
 @property (strong, nonatomic) IBOutlet UITextField *email;

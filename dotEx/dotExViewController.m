@@ -7,14 +7,19 @@
 //
 
 #import "dotExViewController.h"
+#import "ASIFormDataRequest.h"
 
 @interface dotExViewController ()
 @end
 
 @implementation dotExViewController
-@synthesize Login = _Login;
-@synthesize Sign_Up = _Sign_Up;
 @synthesize firstName = _firstName;
+@synthesize lastName = _lastName;
+@synthesize secretAnswer = _secretAnswer;
+@synthesize email = _email;
+@synthesize accountName = _accountName;
+@synthesize password = _password;
+@synthesize reEnteredPassword = _reEnteredPassword;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -24,6 +29,12 @@
     //....
     //The next line is important!!
     self.firstName.delegate = self; //self references the viewcontroller or view your textField is on
+    self.reEnteredPassword.delegate = self;
+    self.lastName.delegate = self;
+    self.secretAnswer.delegate = self;
+    self.email.delegate = self;
+    self.accountName.delegate = self;
+    self.password.delegate = self;
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -54,7 +65,10 @@
 }
 -(IBAction)submitSignUpPressed:(id)sender
 {
-    NSLog(@"%@", self.firstName.text);
+    NSString *myphp = @"http://yus.dyndns-server.com/insertScript.php";
+    NSURL *url = [NSURL URLWithString:myphp];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setPostValue:_firstName.text forKey:@"firstName"];
     
 }
 - (IBAction)sendertextFieldShouldReturn:(id)textField
