@@ -36,6 +36,9 @@
     self.accountName.delegate = self;
     self.password.delegate = self;
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.scroller.contentSize = self.scrollContent.frame.size;
+    [self.scroller scrollRectToVisible:CGRectMake(0, 499, 320, 2) animated:YES];
 }
 
 - (void)viewDidUnload
@@ -69,6 +72,7 @@
     NSString *myphp = @"http://yus.dyndns-server.com/insertScript.php";
     NSURL *url = [NSURL URLWithString:myphp];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setDelegate:self];
     [request setPostValue:_firstName.text forKey:@"firstName"];
     [request setPostValue:secretQuestion forKey:@"secretQuestion"];
     [request setPostValue:_lastName.text forKey:@"lastName"];
@@ -76,14 +80,25 @@
     [request setPostValue:_accountName.text forKey:@"userName"];
     [request setPostValue:_email.text forKey:@"email"];
     [request setPostValue:_secretAnswer.text forKey:@"secretAnswer"];
-    [request startAsynchronous];
-    NSString *response = [request responseString];
-    if([response isEqualToString:@"User Created"])
-    {
-        NSLog(@"User Created");
-    }
-    
+    [request startAsynchronous];    
 }
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    // Use when fetching text data
+    NSString *responseString = [request responseString];
+    // Use when fetching binary data
+    NSData *responseData = [request responseData];
+    NSLog(@"%@", responseString);
+    //[[UIAlertView alloc] initWithTitle:@"@Sign Up" message:responseString delegate:self cancelButtonTitle:nil otherButtonTitles:@"@OK", nil];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
+    NSLog(@"Request Failed");
+    NSLog(@"%@", error);
+}
+
 - (IBAction)sendertextFieldShouldReturn:(id)textField
 {
     [textField resignFirstResponder];

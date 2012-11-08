@@ -17,5 +17,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *reEnteredPassword;
 @property (strong, nonatomic) IBOutlet UITextField *secretAnswer;
 //blah
+@property (strong, nonatomic) IBOutlet UIScrollView *scroller;
+@property (strong, nonatomic) IBOutlet UIView *scrollContent;
 
 @end
