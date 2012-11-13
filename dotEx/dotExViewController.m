@@ -71,6 +71,20 @@
     NSNumber *secretQuestion = [NSNumber numberWithInt:(1)];
     NSString *myphp = @"http://yus.dyndns-server.com/insertScript.php";
     NSURL *url = [NSURL URLWithString:myphp];
+    if(_email.text = nil)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"@Sign Up" message:@"@Error a email must be present and of the form abc@example.com." delegate:self cancelButtonTitle:nil otherButtonTitles:@"@OK", nil];
+        [alert show];
+        _email.text = @"";
+    }
+    BOOL check = FALSE;
+    for(int i = 0; i < [_email.text length]; i++)
+    {
+        if([_email.text characterAtIndex:i] == '@')
+        {
+            check = TRUE;
+        }
+    }
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setDelegate:self];
     [request setPostValue:_firstName.text forKey:@"firstName"];
