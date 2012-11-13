@@ -38,7 +38,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.scroller.contentSize = self.scrollContent.frame.size;
-    [self.scroller scrollRectToVisible:CGRectMake(0, 499, 320, 2) animated:YES];
+    //[self.scroller scrollRectToVisible:CGRectMake(0, 499, 320, 2) animated:YES];
 }
 
 - (void)viewDidUnload
@@ -86,10 +86,9 @@
 {
     // Use when fetching text data
     NSString *responseString = [request responseString];
-    // Use when fetching binary data
-    NSData *responseData = [request responseData];
     NSLog(@"%@", responseString);
-    //[[UIAlertView alloc] initWithTitle:@"@Sign Up" message:responseString delegate:self cancelButtonTitle:nil otherButtonTitles:@"@OK", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"@Sign Up" message:responseString delegate:self cancelButtonTitle:nil otherButtonTitles:@"@OK", nil];
+    [alert show];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
