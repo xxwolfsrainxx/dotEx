@@ -35,6 +35,8 @@
     self.email.delegate = self;
     self.accountName.delegate = self;
     self.password.delegate = self;
+    self.password.secureTextEntry = YES;
+    self.reEnteredPassword.secureTextEntry = YES;
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.scroller.contentSize = self.scrollContent.frame.size;
@@ -71,30 +73,58 @@
     NSNumber *secretQuestion = [NSNumber numberWithInt:(1)];
     NSString *myphp = @"http://yus.dyndns-server.com/insertScript.php";
     NSURL *url = [NSURL URLWithString:myphp];
-    if(_email.text = nil)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"@Sign Up" message:@"@Error a email must be present and of the form abc@example.com." delegate:self cancelButtonTitle:nil otherButtonTitles:@"@OK", nil];
-        [alert show];
-        _email.text = @"";
-    }
-    BOOL check = FALSE;
+    BOOL checkEmailOne, checkEmailTwo, checkPassword = FALSE;
     for(int i = 0; i < [_email.text length]; i++)
     {
         if([_email.text characterAtIndex:i] == '@')
         {
-            check = TRUE;
+            checkEmailOne = TRUE;
+            break;
         }
+        else
+            checkEmailOne = FALSE;
     }
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request setDelegate:self];
-    [request setPostValue:_firstName.text forKey:@"firstName"];
-    [request setPostValue:secretQuestion forKey:@"secretQuestion"];
-    [request setPostValue:_lastName.text forKey:@"lastName"];
-    [request setPostValue:_password.text forKey:@"userPassword"];
-    [request setPostValue:_accountName.text forKey:@"userName"];
-    [request setPostValue:_email.text forKey:@"email"];
-    [request setPostValue:_secretAnswer.text forKey:@"secretAnswer"];
-    [request startAsynchronous];    
+    if ([_email.text rangeOfString:@".com"].location == NSNotFound)
+    {
+        checkEmailTwo = FALSE;
+    }
+    else
+    {
+        checkEmailTwo = TRUE;
+    }
+    if([_password.text isEqualToString:_reEnteredPassword.text])
+        checkPassword = TRUE;
+    if([_firstName.text length] == 0 || [_lastName.text length] == 0 || [_secretAnswer.text length] == 0 || [_email.text length] == 0 || [_accountName.text length] == 0 || [_password.text length] == 0 || [_reEnteredPassword.text length] == 0)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sign Up" message:@"Error: You must enter input for all fields." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alert show];
+    }
+    else if(checkEmailOne == FALSE || checkEmailTwo == FALSE)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sign Up" message:@"Error: A email must be of the form abc@example.com." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alert show];
+        _email.text = @"";
+    }
+    else if(checkPassword == FALSE)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sign Up" message:@"Error: Your passwords do not match." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alert show];
+        _password.text = @"";
+        _reEnteredPassword.text = @"";
+    }
+    else
+    {
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        [request setDelegate:self];
+        [request setPostValue:_firstName.text forKey:@"firstName"];
+        [request setPostValue:secretQuestion forKey:@"secretQuestion"];
+        [request setPostValue:_lastName.text forKey:@"lastName"];
+        [request setPostValue:_password.text forKey:@"userPassword"];
+        [request setPostValue:_accountName.text forKey:@"userName"];
+        [request setPostValue:_email.text forKey:@"email"];
+        [request setPostValue:_secretAnswer.text forKey:@"secretAnswer"];
+        [request startAsynchronous];
+    }
 }
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
