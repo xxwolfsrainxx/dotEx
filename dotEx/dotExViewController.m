@@ -20,6 +20,11 @@
 @synthesize accountName = _accountName;
 @synthesize password = _password;
 @synthesize reEnteredPassword = _reEnteredPassword;
+@synthesize forgotAccountName = _forgotAccountName;
+@synthesize forgotSecretAnswer = _forgotSecretAnswer;
+@synthesize forgotEmail = _forgotEmail;
+@synthesize loginPassword = _loginPassword;
+@synthesize loginUserName = _loginUserName;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -30,14 +35,20 @@
     //The next line is important!!
     self.firstName.delegate = self; //self references the viewcontroller or view your textField is on
     self.reEnteredPassword.delegate = self;
+    self.loginUserName.delegate = self;
+    self.loginPassword.delegate = self;
     self.lastName.delegate = self;
     self.secretAnswer.delegate = self;
     self.email.delegate = self;
     self.accountName.delegate = self;
     self.password.delegate = self;
+    self.forgotAccountName.delegate = self;
+    self.forgotEmail.delegate = self;
+    self.forgotSecretAnswer.delegate = self;
+    self.loginPassword.secureTextEntry = YES;
     self.password.secureTextEntry = YES;
     self.reEnteredPassword.secureTextEntry = YES;
-	// Do any additional setup after loading the view, typically from a nib.
+
     
     self.scroller.contentSize = self.scrollContent.frame.size;
     //[self.scroller scrollRectToVisible:CGRectMake(0, 499, 320, 2) animated:YES];
@@ -67,6 +78,10 @@
 {
      dotExViewController *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"homeScreen"];
      [self.navigationController pushViewController:nextView animated:YES];
+}
+-(IBAction)submitForgotPasswordPressed:(id)sender
+{
+    
 }
 -(IBAction)submitSignUpPressed:(id)sender
 {
@@ -108,6 +123,13 @@
     else if(checkPassword == FALSE)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sign Up" message:@"Error: Your passwords do not match." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alert show];
+        _password.text = @"";
+        _reEnteredPassword.text = @"";
+    }
+    else if([_password.text length] < 6)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sign Up" message:@"Error: A valid password must be 6 characters or greater." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
         _password.text = @"";
         _reEnteredPassword.text = @"";
