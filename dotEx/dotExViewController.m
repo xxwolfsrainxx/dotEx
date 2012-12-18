@@ -11,7 +11,7 @@
 
 @interface dotExViewController ()
 @end
-
+NSString *responseString;
 @implementation dotExViewController
 @synthesize firstName = _firstName;
 @synthesize lastName = _lastName;
@@ -48,7 +48,6 @@
     self.loginPassword.secureTextEntry = YES;
     self.password.secureTextEntry = YES;
     self.reEnteredPassword.secureTextEntry = YES;
-
     
     self.scroller.contentSize = self.scrollContent.frame.size;
     //[self.scroller scrollRectToVisible:CGRectMake(0, 499, 320, 2) animated:YES];
@@ -76,8 +75,22 @@
 }
 -(IBAction)loginPressed:(id)sender
 {
+    NSString *myphp = @"http://yus.dyndns-server.com/loginScript.php";
+    NSURL *url = [NSURL URLWithString:myphp];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request setPostValue:_loginPassword.text forKey:@"userPassword"];
+    [request setPostValue:_loginUserName.text forKey:@"userName"];
+    [request startAsynchronous];
+    if([responseString isEqualToString:@"true"])
+    {
      dotExViewController *nextView = [self.storyboard instantiateViewControllerWithIdentifier:@"homeScreen"];
      [self.navigationController pushViewController:nextView animated:YES];
+    }
+    else if([responseString isEqualToString:@"false"]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"@Alert" message:@"Invalid UserName or Password" delegate:self cancelButtonTitle:nil otherButtonTitles:@"@OK", nil];
+        [alert show];
+    }
 }
 -(IBAction)submitForgotPasswordPressed:(id)sender
 {
@@ -146,15 +159,17 @@
         [request setPostValue:_email.text forKey:@"email"];
         [request setPostValue:_secretAnswer.text forKey:@"secretAnswer"];
         [request startAsynchronous];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"@Alert" message:responseString delegate:self cancelButtonTitle:nil otherButtonTitles:@"@OK", nil];
+        [alert show];
     }
 }
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     // Use when fetching text data
-    NSString *responseString = [request responseString];
-    NSLog(@"%@", responseString);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"@Sign Up" message:responseString delegate:self cancelButtonTitle:nil otherButtonTitles:@"@OK", nil];
-    [alert show];
+    NSString *theString = [request responseString];
+    theString = [theString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSLog(@"%@", theString);
+    responseString = theString;
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
