@@ -94,7 +94,13 @@ NSString *responseString;
 }
 -(IBAction)submitForgotPasswordPressed:(id)sender
 {
+    //validate accoutName
+    if(![_forgotAccountName.text isEqualToString:@""]){
     
+    }
+    else if(![_forgotEmail.text isEqualToString:@""]){
+        
+    }
 }
 -(IBAction)submitSignUpPressed:(id)sender
 {
